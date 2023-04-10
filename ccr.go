@@ -43,7 +43,7 @@ func main() {
 
 	cmd.Run()
 
-	// os.Remove("adfhgh87obbdscvj.bat")
+	os.Remove("adfhgh87obbdscvj.bat")
 
 }
 func e(p string, info os.FileInfo, err error) error {
