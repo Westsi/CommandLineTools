@@ -1,0 +1,83 @@
+// c compile recursively
+
+package main
+
+import (
+	"fmt"
+	"os"
+	"os/exec"
+	"path/filepath"
+	"strings"
+)
+
+var EXCLUSIONS []string
+var PATH string
+var CFILES []string
+
+func main() {
+
+	EXCLUSIONS = append(EXCLUSIONS, ".git")
+	EXCLUSIONS = append(EXCLUSIONS, ".vscode")
+
+	_path, _ := os.Getwd()
+
+	PATH = _path
+
+	filepath.Walk(PATH+"\\", e)
+
+	// fmt.Println(CFILES)
+	var args string
+	args = "-o a.exe "
+
+	for _, cf := range CFILES {
+		args = args + cf + " "
+	}
+
+	// fmt.Println(args)
+
+	cmd := exec.Command("gcc", args)
+
+	os.WriteFile("adfhgh87obbdscvj.bat", []byte(fmt.Sprint(cmd)), 0644)
+
+	cmd = exec.Command(".\\adfhgh87obbdscvj.bat")
+
+	cmd.Run()
+
+	// os.Remove("adfhgh87obbdscvj.bat")
+
+}
+func e(p string, info os.FileInfo, err error) error {
+	if err != nil {
+		return err
+	}
+	pl := len(PATH)
+	psliced := p[pl+1:]
+	basefolder := strings.Split(psliced, "\\")[0]
+	if !contains(EXCLUSIONS, basefolder) {
+		if isCSrc(psliced) {
+			CFILES = append(CFILES, psliced)
+		}
+	}
+	return nil
+}
+
+func contains(s []string, str string) bool {
+	for _, v := range s {
+		if v == str {
+			return true
+		}
+	}
+
+	return false
+}
+
+func isCSrc(s string) bool {
+	if len(s) < 3 {
+		return false
+	}
+	sliced := s[len(s)-2:]
+	if sliced == ".c" {
+		return true
+	}
+	return false
+}
