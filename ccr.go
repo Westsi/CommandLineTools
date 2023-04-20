@@ -28,6 +28,9 @@ func main() {
 	// fmt.Println(CFILES)
 	var args string
 	args = "-o a.exe "
+	for _, a := range os.Args[1:] {
+		args = args + a + " "
+	}
 
 	for _, cf := range CFILES {
 		args = args + cf + " "
