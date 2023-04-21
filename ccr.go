@@ -3,6 +3,7 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"os"
 	"os/exec"
@@ -44,7 +45,14 @@ func main() {
 
 	cmd = exec.Command(".\\adfhgh87obbdscvj.bat")
 
-	cmd.Run()
+	var outb, errb bytes.Buffer
+	cmd.Stdout = &outb
+	cmd.Stderr = &errb
+	err := cmd.Run()
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println("STDOUT:", outb.String(), "STDERR:", errb.String())
 
 	os.Remove("adfhgh87obbdscvj.bat")
 
