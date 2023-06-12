@@ -8,14 +8,13 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
-  
-strategy:
-  matrix:
-    os: [ubuntu-latest, macos-latest]
 
 jobs:
   build:
-    runs-on: {{matrix.os}}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
     steps:
     - uses: actions/checkout@v3
 
@@ -24,9 +23,9 @@ jobs:
       with:
         go-version: 1.19
 
-    - name: Build CCR
+    - name: Build CCR on ${{ matrix.os }}
       run: go build -v ./ccr.go
-    - name: Build CNM
+    - name: Build CNM  on ${{ matrix.os }}
       run: go build -v ./cnm.go
   
 #     - name: Test
