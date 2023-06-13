@@ -8,6 +8,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"runtime"
 	"strings"
 )
 
@@ -28,7 +29,12 @@ func main() {
 
 	// fmt.Println(CFILES)
 	var args string
-	args = "-o a.exe "
+	if runtime.GOOS == "windows" {
+		args = "-o a.exe "
+	} else {
+		args = "-o a.out "
+	}
+
 	for _, a := range os.Args[1:] {
 		args = args + a + " "
 	}
