@@ -59,7 +59,7 @@ func main() {
 		cmd = exec.Command(".\\" + fname)
 	} else {
 		fname = "adfhgh87obbdscvj.sh"
-		err := os.WriteFile(fname, []byte(fmt.Sprint(cmd)), 256|128|64)
+		err := os.WriteFile(fname, []byte("#!/bin/sh"+"\n"+fmt.Sprint(cmd)), 256|128|64)
 		if err != nil {
 			fmt.Println(err)
 		}
