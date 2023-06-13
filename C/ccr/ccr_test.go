@@ -8,7 +8,7 @@ import (
 )
 
 func TestCCR(t *testing.T) {
-	t.Log("Testing CCR")
+	t.Log("Testing C Compile Recursively")
 	var cmd *exec.Cmd
 	if runtime.GOOS == "windows" {
 		cmd = exec.Command("..\\..\\ccr.exe")
