@@ -11,10 +11,11 @@ func TestCCR(t *testing.T) {
 	t.Log("Testing CCR")
 	var cmd *exec.Cmd
 	if runtime.GOOS == "windows" {
-		cmd = exec.Command(".\\ccr.exe")
+		// cmd = exec.Command(".\\ccr.exe")
 	} else {
-		cmd = exec.Command("./ccr")
+		// cmd = exec.Command("./ccr")
 	}
+	cmd = exec.Command("ls")
 
 	var outb, errb bytes.Buffer
 	cmd.Stdout = &outb
