@@ -27,9 +27,9 @@ func TestCCR(t *testing.T) {
 	t.Logf("STDOUT: %s\nSTDERR: %s\n", outb.String(), errb.String())
 
 	if runtime.GOOS == "windows" {
-		cmd = exec.Command("..\\..\\a.exe")
+		cmd = exec.Command(".\\a.exe")
 	} else {
-		cmd = exec.Command("../../a.out")
+		cmd = exec.Command("./a.out")
 	}
 
 	// reset buffers
