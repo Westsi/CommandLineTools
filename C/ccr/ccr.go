@@ -87,8 +87,5 @@ func isCSrc(s string) bool {
 		return false
 	}
 	sliced := s[len(s)-2:]
-	if sliced == ".c" {
-		return true
-	}
-	return false
+	return sliced == ".c"
 }

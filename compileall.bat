@@ -1,4 +1,4 @@
 @ECHO OFF
-go build .\cnm.go
+go build .\C\cnm\cnm.go
 
-go build .\ccr.go
+go build .\C\ccr\ccr.go
