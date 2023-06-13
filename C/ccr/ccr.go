@@ -49,12 +49,21 @@ func main() {
 	fmt.Println(cmd)
 
 	// gcc says no input files if does not write to file
+	var fname string
 	if runtime.GOOS == "windows" {
-		os.WriteFile("adfhgh87obbdscvj.bat", []byte(fmt.Sprint(cmd)), 0644)
-		cmd = exec.Command(".\\adfhgh87obbdscvj.bat")
+		fname = "adfhgh87obbdscvj.bat"
+		err := os.WriteFile(fname, []byte(fmt.Sprint(cmd)), 0644)
+		if err != nil {
+			fmt.Println(err)
+		}
+		cmd = exec.Command(".\\" + fname)
 	} else {
-		os.WriteFile("adfhgh87obbdscvj.sh", []byte(fmt.Sprint(cmd)), 256|128|64)
-		cmd = exec.Command("./adfhgh87obbdscvj.sh")
+		fname = "adfhgh87obbdscvj.sh"
+		err := os.WriteFile(fname, []byte(fmt.Sprint(cmd)), 256|128|64)
+		if err != nil {
+			fmt.Println(err)
+		}
+		cmd = exec.Command("./" + fname)
 	}
 
 	var outb, errb bytes.Buffer
@@ -66,7 +75,7 @@ func main() {
 	}
 	fmt.Println("STDOUT:", outb.String(), "STDERR:", errb.String())
 
-	os.Remove("adfhgh87obbdscvj.bat")
+	os.Remove(fname)
 
 }
 func getfiles(p string, info os.FileInfo, err error) error {
