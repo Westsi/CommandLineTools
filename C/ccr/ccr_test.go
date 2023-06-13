@@ -13,7 +13,7 @@ func TestCCR(t *testing.T) {
 	if runtime.GOOS == "windows" {
 		cmd = exec.Command(".\\ccr.exe")
 	} else {
-		cmd = exec.Command(".\\ccr.out")
+		cmd = exec.Command("./ccr")
 	}
 
 	var outb, errb bytes.Buffer
@@ -28,7 +28,7 @@ func TestCCR(t *testing.T) {
 	if runtime.GOOS == "windows" {
 		cmd = exec.Command(".\\a.exe")
 	} else {
-		cmd = exec.Command(".\\a.out")
+		cmd = exec.Command("./a.out")
 	}
 
 	// reset buffers

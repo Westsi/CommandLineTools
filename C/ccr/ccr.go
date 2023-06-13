@@ -25,7 +25,7 @@ func main() {
 
 	PATH = _path
 
-	filepath.Walk(PATH+"\\", e)
+	filepath.Walk(PATH+string(os.PathSeparator), getfiles)
 
 	// fmt.Println(CFILES)
 	var args string
@@ -46,10 +46,16 @@ func main() {
 	// fmt.Println(args)
 
 	cmd := exec.Command("gcc", args)
+	fmt.Println(cmd)
 
-	os.WriteFile("adfhgh87obbdscvj.bat", []byte(fmt.Sprint(cmd)), 0644)
-
-	cmd = exec.Command(".\\adfhgh87obbdscvj.bat")
+	// gcc says no input files if does not write to file
+	if runtime.GOOS == "windows" {
+		os.WriteFile("adfhgh87obbdscvj.bat", []byte(fmt.Sprint(cmd)), 0644)
+		cmd = exec.Command(".\\adfhgh87obbdscvj.bat")
+	} else {
+		os.WriteFile("adfhgh87obbdscvj.sh", []byte(fmt.Sprint(cmd)), 256|128|64)
+		cmd = exec.Command("./adfhgh87obbdscvj.sh")
+	}
 
 	var outb, errb bytes.Buffer
 	cmd.Stdout = &outb
@@ -63,13 +69,13 @@ func main() {
 	os.Remove("adfhgh87obbdscvj.bat")
 
 }
-func e(p string, info os.FileInfo, err error) error {
+func getfiles(p string, info os.FileInfo, err error) error {
 	if err != nil {
 		return err
 	}
 	pl := len(PATH)
 	psliced := p[pl+1:]
-	basefolder := strings.Split(psliced, "\\")[0]
+	basefolder := strings.Split(psliced, string(os.PathSeparator))[0]
 	if !contains(EXCLUSIONS, basefolder) {
 		if isCSrc(psliced) {
 			CFILES = append(CFILES, psliced)
