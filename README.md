@@ -54,7 +54,7 @@ Contributions are always welcome!
 
 See [`CONTRIBUTING.md`](CONTRIBUTING.md) for ways to get started.
 
-Please adhere to this project's `code of conduct`.
+Please adhere to this project's [`code of conduct`](CODE_OF_CONDUCT.md).
 
 
 ## Roadmap
