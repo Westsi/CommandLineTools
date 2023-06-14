@@ -2,6 +2,8 @@
 # CommandLineTools (CMDTOOLS)
 
 A collection of useful command line tools that I have made at points.
+__NOTE!!__
+The folder names are not the language that the tool is written in, but the language that the tool aims to help.
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/Westsi/CommandLineTools?color=green&style=for-the-badge)
 ![GitHub](https://img.shields.io/github/license/westsi/CommandLineTools?style=for-the-badge)
