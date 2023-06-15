@@ -22,9 +22,13 @@ The folder names are not the language that the tool is written in, but the langu
 ## Installation
 
 Install CommandLineTools by downloading the release or building from source.
-
+#### Windows
 ```bash
-  $: ./compileall.bat
+  $: ./build.bat
+```
+#### Unix
+```bash
+  $: ./build.sh
 ```
     
 ## Usage
