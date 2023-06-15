@@ -24,11 +24,15 @@ jobs:
         go-version: 1.19
 
     - name: Build CCR on ${{ matrix.os }}
-      run: go build -v ./C/ccr/ccr.go
+      run: go build -v ./C/ccr/
     - name: Build CNM  on ${{ matrix.os }}
-      run: go build -v ./C/cnm/cnm.go
+      run: go build -v ./C/cnm/
+    - name: Build ProjInit  on ${{ matrix.os }}
+      run: go build -v ./general/projinit/
   
     - name: Test CCR on ${{ matrix.os }}
       run: go test -v ./C/ccr/
     - name: Test CNM on ${{ matrix.os }}
       run: go test -v ./C/cnm/
+    - name: Test ProjInit on ${{ matrix.os }}
+      run: go test -v ./general/projinit/

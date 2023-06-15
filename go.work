@@ -1,5 +1,7 @@
 go 1.18
 
-use ./C/ccr
-
-use ./C/cnm
+use (
+	./C/ccr
+	./C/cnm
+	./general/projinit
+)
