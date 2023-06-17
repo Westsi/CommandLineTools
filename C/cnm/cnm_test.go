@@ -59,34 +59,8 @@ func TestCNM(t *testing.T) {
 		fpSplit := strings.Split(fp, string(os.PathSeparator))
 		isH := isEqual(fpSplit, []string{TESTDIRECTORY, TESTDIRECTORY + ".h"})
 		isC := isEqual(fpSplit, []string{TESTDIRECTORY, TESTDIRECTORY + ".c"})
-		// expectedCContents := "\n    \n    #include \"" + TESTDIRECTORY + ".h\""
-		// expectedHContents := "\n\n#ifndef " + strings.ToUpper(TESTDIRECTORY) + "_H_\n#define " + strings.ToUpper(TESTDIRECTORY) + "_H_\n\n#endif //" + strings.ToUpper(TESTDIRECTORY) + "_H_"
-		if isH || isC {
-			// not working - attempts to make sure that file contents are correct
-			// if isC {
-			// 	spl := strings.Split(string(b), "*/")
-			// 	if spl[1] != expectedCContents {
-			// 		t.Errorf("C File contents incorrect.")
-			// 		t.Log(spl[1])
-			// 		t.Log(expectedCContents)
-			// 		t.FailNow()
-			// 	}
-			// } else if isH {
-			// 	if strings.Split(string(b), "*/")[1] != expectedHContents {
-			// 		t.Errorf("H File contents incorrect.")
-			// 		t.Log(string(b))
-			// 		t.Log(expectedHContents)
-			// 		t.FailNow()
-			// 	}
-			// } else {
-			// 	t.Errorf("Something has gone really wrong.")
-			// 	t.FailNow()
-			// }
-		} else {
-			t.Logf("isC: %v, isH: %t", isC, isH)
-			t.Logf("Comparing to H: %s, C: %s", TESTDIRECTORY+string(os.PathSeparator)+TESTDIRECTORY+".h", TESTDIRECTORY+string(os.PathSeparator)+TESTDIRECTORY+".c")
-			t.Logf("\n%s\n%s\n%s", fp, TESTDIRECTORY+string(os.PathSeparator)+TESTDIRECTORY+".h", TESTDIRECTORY+string(os.PathSeparator)+TESTDIRECTORY+".c")
-			// t.Errorf("Filename incorrect, expected %s, got %s", TESTDIRECTORY+string(os.PathSeparator)+TESTDIRECTORY+"[.c, .h]", fp)
+		if !(isH || isC) {
+			t.Errorf("ERROR IN TEST SUITE %s", fp)
 			t.FailNow()
 		}
 
