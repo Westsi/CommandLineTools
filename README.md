@@ -63,7 +63,7 @@ Please adhere to this project's [`code of conduct`](CODE_OF_CONDUCT.md).
 
 ## Roadmap
 
-- Linux/Mac build script
+- ~~Linux/Mac build script~~
 
 - More tools
 
